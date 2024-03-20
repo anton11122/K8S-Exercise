@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-app
+spec:
+  ingressClassName: external-nginx
+  rules:
+    - host: flask.dev.local
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: flask-app
+                port:
+                  number: 5000
